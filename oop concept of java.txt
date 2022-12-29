@@ -1,0 +1,213 @@
+Program:
+
+//File Customer.java
+public class Customer
+
+«vate String customerName,address;
+private String mobileNo;
+public void setCustomerName(String customerName)
+tis.customerName = customerName;
+public oid setAddress(String address)
+this.address = address;
+public void setMobileNo(String mobileNo)
+this.mobileNo = mobileNo;
+public String getCustomerName()
+‘turn customerName;
+public ering getAddress()
+return address;
+public ing getMobileNo()
+foturn mobileNo;
+
+3
+}
+
+//File Account.java
+import java.util.Scanner;
+public class Account
+
+{
+
+static int accno=1000;
+protected double balance;
+protected int accountNo;
+Customer cs = new Customer();
+public Account()
+accountNo = accno++;
+
+void setBalance(double balance)
+
+{
+
+this.balance = balance;
+public * ouble getBalance()
+soturn balance;
+public Pe getAccountNo()
+feturn accountNo;
+public void readAccountInfo()
+
+Scanner sc= new Scanner(System.in);
+System.out.printin("Enter name of customer:");
+cs.setCustomerName(sc.next());
+
+System.out.printIn("Enter address of customer:");
+cs.setAddress(sc.next());
+
+System.out.printIn("Enter mobile of customer:");
+cs.setMobileNo(sc.next());
+
+System.out.printiIn("Enter intial balance (>500):");
+setBalance(sc.nextDouble());
+
+System.out.printIn("Your account number is: "+ accountNo);
+
+3
+
+//File SavingsAccount.java
+class SavingsAccount extends Account
+
+private final double minimumBalance = 500;
+public void depositMoney(double amount)
+
+this.balance = this.balance + amount;
+
+public void withdrawMoney(double amount)
+{
+if (balance - amount >= minimumBalance )
+this.balance = balance - amount;
+else
+System.out.printin("Can not withdraw this much amount");
+
+}
+
+public void displayAccount()
+{
+System.out.println("Account info");
+System.out.println("Account no="+ this.getAccountNo());
+System.out.printlIn("Account Name="+ this.cs.getCustomerName());
+System.out.printin("Account Address="+ this.cs.getAddress());
+System.out.println("Account Mobile="+ this.cs.getMobileNo());
+System.out.printin("Account Balance="+ this.getBalance());
+
+}
+
+//File //File SavingsAccount.java
+import java.util.Scanner;
+public class MyBank
+
+{
+
+public static int searchAccount(SavingsAccount sa[],int accNo)
+{
+int k;
+for(k=0; k< sa.length;k++ )
+
+{
+
+if(sa[k].accountNo == accNo)
+return k;
+
+k++;
+
+}
+
+return -1;
+
++
+public static void main(String[] args)
+{
+SavingsAccount sa[] = new SavingsAccount[10];
+Scanner sc = new Scanner(System.in);
+int accNo=0,k, saCount=0;
+int choice;
+double amount;
+do
+{
+
+System.out.printIn("1: Create Account");
+System.out.printiIn("2: Deposit Amount");
+System.out.printin("3: Withdraw Amount");
+System.out.printin("4: Display Account");
+System.out.printin("5: Exit");
+System.out.print("Enter your choice: "); //printing on console
+choice=sc.nextint();
+switch(choice)
+{
+case 1:
+sa[saCount] = new SavingsAccount();
+sa[saCount].readAccountInfo();
+saCount++;
+break;
+case 2:
+System.out.printin("Enter account number:");
+accNo = sc,nextInt();
+k= searchAccount(sa, accNo);
+if(k!= -1)
+{
+System.out.printin("Enter amount to deposit:");
+amount = sc.nextDouble();
+sa[k].depositMoney(amount);
+System.out.printin("Amount deposited");
+
+}
+else
+
+{
+
+System.out.println("Account does not exists");
+}
+
+break;
+
+case 3:
+
+System.out.printin("Enter account number:");
+
+accNo = sc.nextInt();
+
+k= searchAccount(sa, accNo);
+
+if(k!= -1)
+{
+System.out.printin("Enter amount to withdraw:");
+amount = sc.nextDouble();
+sa[k].withdrawMoney(amount);
+System.out.printin("Amount withdraw successfull");
+
+else
+
+{
+
+System.out.println("Account does not exists");
+break;
+
+case 4:
+System.out.printin("Enter account number:");
+
+accNo = sc.nextInt();
+k= searchAccount(sa, accNo);
+if(k!= -1)
+
+{
+
+sa[k].displayAccount();
+}
+
+else
+{
+System.out.printin("Account does not exists");
+}
+break;
+case 5:
+System.out.printin("Terminating the program");
+
+break;
+default:
+System.out.printiIn("Wrong choice");
+
+t
+}while(choice != 5);
+
+}
+
+Conclusion: In this experiment we implemented OOP concepts of java.
+
